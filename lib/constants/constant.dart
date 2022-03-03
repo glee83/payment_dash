@@ -5,6 +5,7 @@ const kPrimaryColor = Color(0xff312b47);
 const kSecondaryColor = Color(0xff653ff4);
 const kDefaultColor = Color(0xffffffff);
 const kDarkColor = Color(0xff000000);
+const kDarkDefaultColor = Color(0xfff5f5f5);
 
 // cards detail
 
@@ -14,12 +15,14 @@ List<CardModel> card = [
     cardNum: '4120 **** **** 9534',
     amount: '15000',
     exprd: '06/25',
+    id: 1,
   ),
   CardModel(
     cardType: 'Credit card',
     cardNum: '4011 **** **** 4124',
     amount: "1000",
     exprd: '02/23',
+    id: 2,
   ),
 ];
 
@@ -28,12 +31,14 @@ class CardModel {
   String cardNum;
   String exprd;
   String amount;
+  int id;
 
   CardModel({
     required this.cardType,
     required this.cardNum,
     required this.amount,
     required this.exprd,
+    required this.id,
   });
 }
 

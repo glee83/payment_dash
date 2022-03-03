@@ -5,6 +5,8 @@ import 'package:payment_dash/constants/constant.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 
+import '../custom_widget/transactions.dart';
+
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
 
@@ -136,7 +138,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           fontSize: 15.0,
                         ),
                       ),
-                      Container(
+                      SizedBox(
                         width: MediaQuery.of(context).size.width,
                         height: 230.0,
                         child: CarouselSlider.builder(
@@ -169,7 +171,7 @@ class _HomeScreenState extends State<HomeScreen> {
                               width: MediaQuery.of(context).size.width,
                               height: 200.0,
                               decoration: BoxDecoration(
-                                color: card[index] == 0
+                                color: card[index].id == 1
                                     ? kSecondaryColor
                                     : Colors.grey,
                                 borderRadius: BorderRadius.circular(20.0),
@@ -305,22 +307,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         ),
                       ),
                       const SizedBox(height: 10.0),
-                      Column(
-                        children: [
-                          Text(
-                            'Transactions',
-                            style: GoogleFonts.poppins(
-                              color: kDarkColor,
-                              fontSize: 16.0,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                          const SizedBox(
-                            height: 10.0,
-                          ),
-                          const Transactions()
-                        ],
-                      ),
+                      const Transaction(),
                     ],
                   ),
                 )
@@ -328,61 +315,6 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
           ),
         ),
-      ),
-    );
-  }
-}
-
-class Transactions extends StatelessWidget {
-  const Transactions({
-    Key? key,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      height: 200.0,
-      child: ListView.builder(
-        itemCount: transactions.length,
-        itemBuilder: (context, int index) {
-          final trans = transactions[index];
-
-          return ListTile(
-            leading: Container(
-              width: 60.0,
-              height: 60.0,
-              decoration: BoxDecoration(
-                  color: Colors.green,
-                  borderRadius:
-                      BorderRadius.circular(5.0),
-                  image: DecorationImage(
-                    image: AssetImage(
-                      trans.imageUrl,
-                    ),
-                    fit: BoxFit.cover,
-                  )),
-            ),
-            title: Text(
-              trans.title,
-              style: GoogleFonts.poppins(
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-            subtitle: Text(trans.subTitle),
-            trailing: Column(
-              crossAxisAlignment: CrossAxisAlignment.end,
-              children: [
-                Text(
-                  trans.amount.toString(),
-                  style: GoogleFonts.poppins(
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-                Text(trans.detail),
-              ],
-            ),
-          );
-        },
       ),
     );
   }
