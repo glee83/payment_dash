@@ -56,3 +56,64 @@ AnimatedSmoothIndicator smoothPageIndicator(int activeIndex) {
     ),
   );
 }
+
+//////////////////////////////////////////////// model des transactions ///////////////////////////
+///
+///
+///
+///
+///'''''''''''''''''''''''''''''''' youoo'''''''''''''''''''''''''''''''''
+
+class Transactions {
+  String imageUrl;
+  String title;
+  String subTitle;
+  String detail;
+  int amount;
+
+  Transactions({
+    required this.imageUrl,
+    required this.title,
+    required this.subTitle,
+    required this.amount,
+    required this.detail,
+  });
+}
+
+//////////////////////////////////////////////// List of transactions ///////////////////////////
+///
+///
+///
+///
+///'''''''''''''''''''''''''''''''' imd'''''''''''''''''''''''''''''''''
+
+List<Transactions> transactions = [
+  Transactions(
+    imageUrl: 'images/netflix.jpg',
+    title: 'Netflix',
+    subTitle: 'movie, films',
+    amount: 40,
+    detail: '3 days ago',
+  ),
+  Transactions(
+    imageUrl: 'images/amazon.jpg',
+    title: 'Amazon',
+    subTitle: 'movie, films',
+    amount: 29,
+    detail: ' 3 min ago',
+  ),
+  Transactions(
+    imageUrl: 'images/ali.jpg',
+    title: 'Alibaba',
+    subTitle: 'Shoes, Truck',
+    amount: 300,
+    detail: '15 days ago',
+  ),
+  Transactions(
+    imageUrl: 'images/netflix.jpg',
+    title: 'Netflix',
+    subTitle: 'movie, films',
+    amount: 40,
+    detail: '3 days ago',
+  ),
+];
