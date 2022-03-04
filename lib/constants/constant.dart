@@ -24,6 +24,13 @@ List<CardModel> card = [
     exprd: '02/23',
     id: 2,
   ),
+  CardModel(
+    cardType: 'Prepaid card',
+    cardNum: '4401 **** **** 0329',
+    amount: "100",
+    exprd: '02/22',
+    id: 3,
+  ),
 ];
 
 class CardModel {
@@ -49,7 +56,7 @@ class CardModel {
 ///
 ///'''''''''''''''''''''''''''''''' imd'''''''''''''''''''''''''''''''''
 
-AnimatedSmoothIndicator smoothPageIndicator(int activeIndex) {
+Widget indicator(int activeIndex) {
   return AnimatedSmoothIndicator(
     count: card.length,
     activeIndex: activeIndex,
@@ -57,7 +64,8 @@ AnimatedSmoothIndicator smoothPageIndicator(int activeIndex) {
       dotColor: Colors.grey,
       dotHeight: 10.0,
       dotWidth: 10.0,
-      activeDotColor: kDarkColor,
+      activeDotColor: kPrimaryColor,
+      paintStyle: PaintingStyle.fill,
     ),
   );
 }

@@ -39,14 +39,15 @@ class Transaction extends StatelessWidget {
                   width: 60.0,
                   height: 60.0,
                   decoration: BoxDecoration(
-                      color: kDarkColor,
-                      borderRadius: BorderRadius.circular(5.0),
-                      image: DecorationImage(
-                        image: AssetImage(
-                          trans.imageUrl,
-                        ),
-                        fit: BoxFit.cover,
-                      )),
+                    color: kDarkColor,
+                    borderRadius: BorderRadius.circular(5.0),
+                    image: DecorationImage(
+                      image: AssetImage(
+                        trans.imageUrl,
+                      ),
+                      fit: BoxFit.cover,
+                    ),
+                  ),
                 ),
                 title: Text(
                   trans.title,
