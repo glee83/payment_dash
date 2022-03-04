@@ -6,7 +6,6 @@ import 'routes/routing.dart';
 void main() {
   runApp(MyApp(route: AppRoute()));
 }
-
 class MyApp extends StatelessWidget {
   AppRoute route;
   MyApp({
