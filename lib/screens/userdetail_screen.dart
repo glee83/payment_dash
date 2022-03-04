@@ -24,7 +24,7 @@ class UserScreen extends StatelessWidget {
                 Navigator.of(context).pop();
               },
               icon: const FaIcon(
-                FontAwesomeIcons.lessThan,
+                FontAwesomeIcons.angleLeft,
                 size: 20,
               ),
             ),

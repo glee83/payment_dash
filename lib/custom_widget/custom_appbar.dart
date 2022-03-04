@@ -4,7 +4,6 @@ import 'package:google_fonts/google_fonts.dart';
 
 import '../constants/constant.dart';
 
-
 class Custom_head extends StatelessWidget {
   const Custom_head({
     Key? key,
@@ -50,7 +49,7 @@ class Custom_head extends StatelessWidget {
           IconButton(
             onPressed: () {},
             icon: const FaIcon(
-              FontAwesomeIcons.bars,
+              FontAwesomeIcons.slidersH,
               color: kDefaultColor,
             ),
           ),
