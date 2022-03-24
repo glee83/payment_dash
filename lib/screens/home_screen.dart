@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:payment_dash/animation/animation_controler.dart';
+import 'package:payment_dash/auth/local_auth.dart';
 import 'package:payment_dash/routes/routing.dart';
 import '../constants/constant.dart';
 import 'package:local_auth/local_auth.dart';
@@ -13,77 +15,6 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  final LocalAuthentication auth = LocalAuthentication();
-  bool? _canCheckBiometric;
-
-  List<BiometricType>? _availableBiometics;
-  String isAuthorized = 'Not autorized';
-
-  Future<void> checkBiometric() async {
-    late bool canCheckBiometric;
-
-    try {
-      canCheckBiometric = await auth.canCheckBiometrics;
-    } on PlatformException catch (e) {
-      canCheckBiometric = false;
-      print(e);
-    }
-
-    if (!mounted) return;
-
-    setState(() {
-      _canCheckBiometric = canCheckBiometric;
-    });
-  }
-
-  Future<void> getAvailableBiometrics() async {
-    late List<BiometricType> availableBiometrics;
-
-    try {
-      availableBiometrics = await auth.getAvailableBiometrics();
-    } on PlatformException catch (e) {
-      // availableBiometrics = <BiometricType>[];
-      print(e);
-    }
-
-    if (!mounted) {
-      return;
-    }
-
-    setState(() {
-      _availableBiometics = availableBiometrics;
-    });
-  }
-
-  Future<void> authenticate() async {
-    bool isAuthenticated = false;
-
-    try {
-      isAuthenticated = await auth.authenticate(
-        localizedReason: 'Scan your finger to login',
-        useErrorDialogs: true,
-        stickyAuth: false,
-        biometricOnly: true,
-      );
-    } on PlatformException catch (e) {
-      print(e);
-    }
-
-    if (!mounted) return;
-
-    setState(() {
-      isAuthorized = isAuthenticated ? "Successful" : "Failed to authenticate";
-      print(isAuthorized);
-    });
-  }
-
-  @override
-  void initState() {
-    checkBiometric();
-    getAvailableBiometrics();
-    super.initState();
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -119,18 +50,32 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
             const SizedBox(height: 100),
             GestureDetector(
-              onTap: () {
-                Navigator.pushNamed(context, Routes.dash);
+              onTap: () async {
+                final isAutenticated = await LocalAuth.authenticate();
+                if (isAutenticated) {
+                  Navigator.of(context).pushNamed(Routes.dash);
+                }
+                // authenticate;
+                // Navigator.pushNamed(context, Routes.dash);
               },
               child: Container(
-                width: 80.0,
-                height: 80.0,
+                // width: 80.0,
+                // height: 80.0,
                 decoration: BoxDecoration(
-                  color: kSecondaryColor,
+                  // color: kSecondaryColor,
                   borderRadius: BorderRadius.circular(50.0),
                   image: const DecorationImage(
+                    scale: 1.9,
+                    opacity: 3.0,
                     image: AssetImage('images/fingerprint.png'),
                   ),
+                ),
+
+                width: 350.0,
+                height: 350.0,
+                child: const CustomAnimation(
+                  count: 3,
+                  color: kDefaultColor,
                 ),
               ),
             ),
